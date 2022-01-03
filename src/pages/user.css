@@ -1,0 +1,4 @@
+.tweet_user {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
