@@ -25,9 +25,10 @@ export default function Login(props) {
         })
             .then(function (response) {
                 console.log(response.data, "<<<<<<<<TOKEN")
-                localStorage.token = `Token ${response.data.key}`
+                // localStorage.token = `Token ${response.data.key}`
+                localStorage.token = response.data
                 localStorage.email = response.data.email
-                localStorage.password = response.data.password
+                localStorage.setItem("email", JSON.stringify(email));
                 props.history.push('/')
                 window.location.reload();
             })
@@ -57,11 +58,11 @@ export default function Login(props) {
                              <br/>  
 
                             <div class="field">
-                                <input class="input-username" type="email" placeholder="Username" onChange={e => setemail(e.target.value)} />
+                                <input class="input-username" type="email" placeholder="Username" value={email} onChange={(e) => setemail(e.target.value)} />
                             </div>
                             
                             <div className="field">
-                                <input class="input-password" type="password" placeholder="Password" onChange={e => setpassword(e.target.value)} />
+                                <input class="input-password" type="password" placeholder="Password" value={password} onChange={(e) => setpassword(e.target.value)} />
                             </div>
 
                             <div className="field" style={{marginTop:"33%"}}>
@@ -82,8 +83,8 @@ export default function Login(props) {
                             <div className="field" style={{marginTop:"25%"}}>
                             <Grid item style={{ color:"#5B5A99",fontSize:"14px", textAlign: "center", marginTop:"15px" }}>
                                 <a>Not a member yet ? </a>
-                                <Link href="/kemkes/signup" item style={{ color:"white",fontSize:"14px", textAlign: "center", marginTop:"15px" }} >
-                                  {" Contact us"}
+                                <Link href="/signup" item style={{ color:"white",fontSize:"14px", textAlign: "center", marginTop:"15px" }} >
+                                  {" Sign Up"}
                                 </Link>
                               </Grid>
                             </div>

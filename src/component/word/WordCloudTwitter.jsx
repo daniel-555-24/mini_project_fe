@@ -3,17 +3,25 @@ import WordCloud from 'react-d3-cloud';
 import {Form} from 'react-bootstrap';
 import { scaleOrdinal } from 'd3-scale';
 import { Grid } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 import BarWordCloud from '../bar/BarWordCloudTwitter';
 
 
 const fill =  ['#075050', '#107E78', '#148E87', '#1CB3AB'];
   
 const schemeCategory10ScaleOrdinal = scaleOrdinal(fill);
-
+const useStyles = makeStyles((theme) => ({
+    seleColor:{
+      backgroundColor:"#24204E",
+      color:"white",
+      border: "1px solid #312F62",
+      borderRadius:"5px",
+    }
+  }));
 
 export default function WordCloudTwitter(props) {
 
-
+    const classes = useStyles();
     const renderForBarWordCloud = () => {
         
         let textArr = [];
@@ -42,7 +50,7 @@ export default function WordCloudTwitter(props) {
                             <span> Word Cloud </span>
                             <br/>
                             <br/>
-                            <Form.Select  size="md" onChange={e => props.onChange(e.target.value)}>
+                            <Form.Select className={classes.seleColor} size="md" onChange={e => props.onChange(e.target.value)}>
                             <option value="5">Key Word : 5</option>
                             <option value="7">Key Word : 7</option>
                             <option value="20">Key Word : 20</option>

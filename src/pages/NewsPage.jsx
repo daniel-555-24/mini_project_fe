@@ -1,10 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import { Card, Grid } from '@material-ui/core';
-import kemkes from '../images/logo_kemenkes baru.jpg';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { Form } from 'react-bootstrap';
@@ -12,20 +9,29 @@ import { url_news } from "../helper/ServiceUrlAPI";
 import WordCloudCompNews from '../component/word/WordCloudNews';
 import LineNews from '../component/line/LineNews';
 import TableNews from '../component/table/TableNews';
+import logo from '../images/venation-med.png'
+import '../App.css'
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownSharp';
 
 const useStyles = makeStyles((theme) => ({
-    appBar: {
-      position: 'relative',
-    },
-    toolbar: {
-      background : 'white',
-    },
-    menuButton: {
-      marginLeft: 'auto',
-    },
+  appBar: {
+    position: 'relative',
+  },
+  toolbar: {
+    background : '#201D47',
+    paddingLeft : '3%',
+    paddingTop : '2%'
+  },
+  menuButton: {
+    marginLeft: 'auto',
+  },
     logo : {
       // width : 100,
-      height : 100
+      height : 65
     },
     rootTableNews: {
       backgroundColor: "#E0E0E0",
@@ -60,6 +66,14 @@ export default function TwitterPage() {
     const [positifArr, setpositifArr] = React.useState([]);
     const [netralArr, setnetralArr] = React.useState([]);
     const [tanggal, settanggal] = React.useState([]);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
 
   React.useEffect(()=> {
     getDataOfNews();
@@ -167,17 +181,55 @@ export default function TwitterPage() {
 
     return(
       <React.Fragment>
-        <CssBaseline />
-        <AppBar position="fixed" title={<img src={kemkes}/>}>
-          <Toolbar className={classes.toolbar}>
-              <img src={kemkes} alt="logo"  className={classes.logo}/>
-              <h4 style={{ color : 'black', marginLeft : '50px'}}><strong>Dashboard Analisis</strong><br/>News</h4>
-          </Toolbar>
-        </AppBar>
-
-        
-  
-        <Grid container style={{ marginTop : 120, paddingLeft : 60}}>
+        <div className="main" style={{backgroundColor:"#201D47"}}>
+        <CssBaseline /> 
+        <div className={classes.toolbar}>
+          <nav classname="navbar" role="navigation" aria-label="main navigation">
+              <div className='navbar-brand' style={{ justify: "center"}}>
+                <img src={logo} alt="logo" className={classes.logo}/>
+                  <h2 style={{ marginLeft : '45px'}}><strong class="gradient-text">Dashboard Analisis</strong><br/>
+                    <h3> </h3>        
+                  </h2>
+                      <div className="navbar-end" style={{marginTop:"-30px"}}>
+                          <div className="navbar-item">
+                              <Button
+                                id="fade-button"
+                                aria-controls={open ? 'fade-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}
+                              >
+                                <text style={{color:"#B1AFCD",fontSize:"16px",marginRight:"10px"}}>
+                                        <img src="https://stickerly.pstatic.net/sticker_pack/hlmWGXRBp4SiGY7Y5ZqCHQ/VQG4JY/2/aa5ea56b-64ad-4779-9e30-0af35c43def3.png" alt="profil" style={{ margin: "auto", marginRight: "5px" }} />
+                                        &nbsp;&nbsp;&nbsp;
+                                        {localStorage.email.substring(1, localStorage.email.lastIndexOf("@"))}
+                                        <ArrowDropDownIcon/>
+                                </text>
+                              </Button>
+                              <Menu
+                                id="fade-menu"
+                                MenuListProps={{
+                                  'aria-labelledby': 'fade-button',
+                                }}
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                TransitionComponent={Fade}
+                              >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={(e) => {
+                                                e.preventDefault()
+                                                localStorage.clear()
+                                                window.location.reload();
+                                            }}>Logout</MenuItem>
+                              </Menu>
+                          </div>
+                      </div>
+              </div>
+            </nav>
+          </div> 
+        <Grid container style={{ marginTop : 20, paddingLeft : 60}} spacing={5}>
             <Grid item sm={2}>
               <Form.Select value={value} onChange={(e)=> setValue(e.target.value)} size="md">
                   <option>News</option>
@@ -218,12 +270,8 @@ export default function TwitterPage() {
               {renderWordNews()}
             </Card>
           </Grid>
-        </Grid>
-
-
-        
-       
-          
+        </Grid> 
+        </div>  
       </React.Fragment>
     )
 }

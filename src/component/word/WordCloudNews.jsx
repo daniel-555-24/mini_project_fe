@@ -35,7 +35,7 @@ export default function WordCloudCompNews(props) {
 
     return (
         <div >
-            {console.log(props.data)}
+            {/* {console.log(props.data)} */}
             <Grid container justifyContent="left">
                     <Grid item sm={7} style={{ marginTop : 10}}>
                         <Grid style={{ fontWeight : 'bold', marginLeft : 20, marginTop : 5, fontSize : 16}}>

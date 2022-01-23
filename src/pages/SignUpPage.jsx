@@ -1,36 +1,70 @@
-import * as React from 'react';
+
+import React, { useState } from 'react'
+import '../App.css'
+import Axios from '../config/axios'
+import "bulma/css/bulma.css";
+import logo from '../images/venation.png'
+import Grid from '@mui/material/Grid';
+import "@fontsource/poppins";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import form from '../Assets/Login.png'
+// import {
+//     Link,
+// } from "react-router-dom"
 
 
-const theme = createTheme();
+export default function Signup(props) {
+    const [username,setusername] = useState("")
+    const [password, setpassword] = useState("")
+    const [email, setemail] = useState("")
 
-export default function SignUpPage() {
+    function signup() {
+        // axios.defaults.withCredentials = true
+        Axios.post('login', {
+            username,
+            email,
+            password
+        })
+            .then(function (response) {
+                console.log(response.data, "<<<<<<<<TOKEN")
+                // localStorage.token = `Token ${response.data.key}`
+                localStorage.token = response.data
+                localStorage.email = response.data.email
+                localStorage.setItem("email", JSON.stringify(email));
+                props.history.push('/')
+                window.location.reload();
+            })
+    }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      // eslint-disable-next-line no-console
+      console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+      });
+    };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+    if (localStorage.token) {
+        return (
+            <h1>You Already Logged In</h1>
+        )
+    }
+    return (
+        <div className="container-fluid homepage-bgimage">
+            <div class="field" style={{ textAlign: "center"}}>
+                    <img src={logo}  style={{marginTop:"8%"}} alt="logo"/>
+             </div>
+             <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -40,14 +74,14 @@ export default function SignUpPage() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            {/* <LockOutlinedIcon /> */}
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+        <div class="loginBox" >
+        <div className="card-content" style={{width:"500px",height:"500px"}}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <div class="login-title" style={{ textAlign: "center" }}>
+                                 <h1 style={{color: "white", fontWeight:"bolder", fontSize:"36px" , marginTop:"0px"}}>Create Your Account</h1>
+                             </div>
+                             <br />
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
@@ -91,14 +125,17 @@ export default function SignUpPage() {
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/kemkes/login" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
-  );
+        </div>
+      </div>
+    </Box>
+  </Container>
+        </div>
+
+    )
 }

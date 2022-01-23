@@ -1,6 +1,6 @@
 
 .App {
-  text-align: center;
+  font-family: "Poppins";
 }
 
 .App-logo {
@@ -38,12 +38,23 @@
 }
 
 
+.gradient-text {
+  background-image: linear-gradient(90deg, #FDFC47 0%, #24FE41 100%);
+  background-size: 100%;
+  background-repeat: repeat;
+  font-family: 'Poppins';
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
 
 .loginBox{
   border-radius: 10px;
   box-sizing: border-box;
   background: linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%);
   box-shadow: 0px 51px 69px rgba(23, 18, 43, 0.585739);
+  margin-top: -25px;
 }
 
 .input-username{ 
@@ -62,6 +73,21 @@
 }
 
 .input-password{ 
+  position: absolute;
+  margin-top: 15%;
+  background-color: #312F62;
+  /* margin-left: 6.5%; */
+  width: 78%;
+  height: 50px;
+  top: 104px;
+  border-radius: 7px;
+  padding-Left:25px;
+  padding-Top:10px; 
+  padding-Bottom:11px;
+  font-Size:"20px";
+}
+
+.input-email{ 
   position: absolute;
   margin-top: 15%;
   background-color: #312F62;
