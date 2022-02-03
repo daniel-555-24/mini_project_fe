@@ -19,6 +19,7 @@ import TableNetral from '../component/table/TableNetral';
 import TablePositif from '../component/table/TablePositif';
 import TableNegatif from '../component/table/TableNegatif';
 import BarSummary from '../component/bar/BarSummary';
+import Navbar from '../component/Navbar';
 import logo from '../images/venation-med.png'
 import '../App.css'
 import Button from '@mui/material/Button';
@@ -356,6 +357,8 @@ export default function TwitterPage(){
                     }}
                       onClick={()=>{
                       handleChangeDaerahmap(d.properties.iso_3166_2)
+                      setValueDropdownDaerah(d.properties.iso_3166_2)
+                      console.log(d.properties.iso_3166_2,"test")
                     }}
                     onMouseOut={(e) => {
                       select(e.target)
@@ -375,8 +378,12 @@ export default function TwitterPage(){
                     select(e.target)
                       .attr('fill', '#000')
                   }}
-                  onClick={()=>{
+                  onClick={(e)=>{
                     handleChangeDaerahmap(d.properties.iso_3166_2);
+                    setValueDropdownDaerah(d.properties.iso_3166_2)
+                    console.log(d.properties.iso_3166_2,"test")
+                    select(e.target)
+                    .attr('fill', '#FF0000')
                   }}
                   onMouseOut={(e) => {
                     select(e.target)
@@ -396,9 +403,12 @@ export default function TwitterPage(){
                   select(e.target)
                     .attr('fill', '#000')
                 }}
-                onClick={()=>{
+                onClick={(e)=>{
                   handleChangeDaerahmap(d.properties.iso_3166_2);
+                  setValueDropdownDaerah(d.properties.iso_3166_2)
                   console.log(d.properties.iso_3166_2,"test")
+                  select(e.target)
+                    .attr('fill', '#FF0000')
                 }}
                 onMouseOut={(e) => {
                   select(e.target)
@@ -451,8 +461,10 @@ export default function TwitterPage(){
             stroke="#0e1724"
             strokeWidth="1"
             strokeOpacity="0.5"
-            onClick={()=>{
+            onClick={(e)=>{
               handleChangeDaerahmap(d.properties.iso_3166_2);
+              select(e.target)
+                    .attr('fill', '#FF0000')
             }}
             onMouseEnter={(e) => {
               select(e.target)
@@ -693,7 +705,8 @@ export default function TwitterPage(){
       <React.Fragment>
           <div className="main" style={{backgroundColor:"#201D47"}}>
           <CssBaseline />
-         <div className={classes.toolbar}>
+          <Navbar/>
+         {/* <div className={classes.toolbar}>
           <nav classname="navbar" role="navigation" aria-label="main navigation">
               <div className='navbar-brand' style={{ justify: "center"}}>
                 <img src={logo} alt="logo" className={classes.logo}/>
@@ -738,7 +751,7 @@ export default function TwitterPage(){
                       </div>
               </div>
             </nav>
-          </div>
+          </div> */}
             
 
         

@@ -29,7 +29,7 @@ export default function Login(props) {
                 localStorage.token = response.data
                 localStorage.email = response.data.email
                 localStorage.setItem("email", JSON.stringify(email));
-                props.history.push('/')
+                props.history.push('/kemkes')
                 window.location.reload();
             })
     }

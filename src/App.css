@@ -18,7 +18,7 @@
 .homepage-bgimage {
   background: url("./images/background-mini.png");
   height: 100vh;
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Poppins";
@@ -69,6 +69,17 @@
   padding-Left:25px;
   padding-Top:10px; 
   padding-Bottom:11px;
+  font-Size:"20px";
+}
+
+.signup-username{
+
+  align-items: center;
+  background-color: #312F62;
+  color: white;
+  height: 50px;
+  border-radius: 7px;
+  padding:10px;
   font-Size:"20px";
 }
 

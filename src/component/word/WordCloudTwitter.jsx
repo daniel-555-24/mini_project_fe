@@ -63,7 +63,7 @@ export default function WordCloudTwitter(props) {
                                 height={80}  
                                 font="Poppins"
                                 fontWeight="bold"
-                                fontSize={(word) => Math.log2(word.value) * 1.8}
+                                fontSize={(word) => Math.log2(word.value) * 10}
                                 spiral="archimedean"
                                 rotate={0}
                                 padding={2}
