@@ -24,7 +24,7 @@ function App() {
       {/* <Navbar /> */}
         <Switch>
           <div>
-              <PrivateRoute exact path="/" component={TwitterPage} auth={isAutheticated} />
+              <PrivateRoute exact path="/kemkes" component={TwitterPage} auth={isAutheticated} />
               <Route path="/login" component={LoginPage} exact />
               <Route path="/signup" component={SignUpPage} exact/>
               {/* <PrivateRoute path="/twittercrawl" component={} auth={isAutheticated} /> */}

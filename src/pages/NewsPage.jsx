@@ -177,7 +177,7 @@ export default function TwitterPage() {
   
 
 
-  if(value === "twitter") history.push('/')
+  if(value === "twitter") history.push('/kemkes')
 
     return(
       <React.Fragment>

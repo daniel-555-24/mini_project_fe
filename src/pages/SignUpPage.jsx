@@ -6,25 +6,27 @@ import "bulma/css/bulma.css";
 import logo from '../images/venation.png'
 import Grid from '@mui/material/Grid';
 import "@fontsource/poppins";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 // import form from '../Assets/Login.png'
 // import {
 //     Link,
 // } from "react-router-dom"
+
+     
 
 
 export default function Signup(props) {
     const [username,setusername] = useState("")
     const [password, setpassword] = useState("")
     const [email, setemail] = useState("")
+
 
     function signup() {
         // axios.defaults.withCredentials = true
@@ -83,28 +85,26 @@ export default function Signup(props) {
                              <br />
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="Username"
-                  required
-                  fullWidth
-                  id="Username"
-                  label="Username"
-                  autoFocus
-                />
+              <div class="field">
+                  <input class="signup-username" style={{width: "-webkit-fill-available"}} type="username" placeholder="Username" value={username} onChange={(e) => setusername(e.target.value)} />
+              </div>
+                           
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                />
+                /> */}
+                <div class="field">
+                  <input class="signup-username" style={{width: "-webkit-fill-available"}} type="email" placeholder="email" value={email} onChange={(e) => setemail(e.target.value)} />
+              </div>
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                   required
                   fullWidth
                   name="password"
@@ -112,7 +112,10 @@ export default function Signup(props) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                />
+                /> */}
+                <div class="field">
+                  <input class="signup-username" style={{width: "-webkit-fill-available"}} type="password" placeholder="password" value={password} onChange={(e) => setpassword(e.target.value)} />
+              </div>
               </Grid>
             </Grid>
             <Button
