@@ -14,6 +14,20 @@
   }
 }
 
+.positif-words{
+position: absolute;
+left: 5.39%;
+right: 64.17%;
+top: 4.42%;
+bottom: 84.96%;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+}
+
 
 .homepage-bgimage {
   background: url("./images/background-mini.png");

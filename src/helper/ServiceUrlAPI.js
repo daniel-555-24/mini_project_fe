@@ -1,5 +1,5 @@
-export const url_live = "http://192.168.90.31:3107";
-export const url_local = "http://localhost:3107";
+export const url_live = "http://localhost:3107";
+export const url_local = "http://192.168.90.31:3107";
 
 
 //live

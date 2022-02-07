@@ -27,6 +27,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownSharp';
+import { fontSize } from '@mui/system';
 
 
 
@@ -53,30 +54,51 @@ const useStyles = makeStyles((theme) => ({
     logo : {
       height : 65,
     },
+    geojsonLayer :{
+
+    },
     rootPositif: {
       border: "4px solid #D2DC2E",
       marginRight: 'auto',
       marginLeft : 'auto',
-      borderRadius : '20px'
+      borderRadius : '20px',
+      background: 'linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%)',
+      boxshadow: '0px 51px 69px rgb(23 18 43 / 59%)'
     },
     rootNegatif: {
       border: "4px solid #BE0712",
       marginRight: 'auto',
       marginLeft : 'auto',
-      borderRadius : '20px'
+      borderRadius : '20px',
+      background: 'linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%)',
+      boxshadow: '0px 51px 69px rgb(23 18 43 / 59%)'
     },
     rootNetral: {
       border: "4px solid #E0E0E0",
       marginRight: 'auto',
       marginLeft : 'auto',
       borderRadius : '20px',
+      background: 'linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%)',
+      boxshadow: '0px 51px 69px rgb(23 18 43 / 59%)'
     },
 
     rootCard: {
       marginRight: 'auto',
       marginLeft : 'auto',
       borderRadius : '20px',
-      paddingBottom :  10
+      paddingBottom :  10,
+      background: 'linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%)',
+      boxShadow: '0px 51px 69px rgba(23, 18, 43, 0.585739)',
+    },
+    rootCardMap:{
+      height:"355px",
+      marginRight: 'auto',
+      marginLeft : 'auto',
+      borderRadius : "20px",
+      paddingBottom :  10,
+      background: 'linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%)',
+      boxShadow: '0px 51px 69px rgba(23, 18, 43, 0.585739)',
+    
     },
     paperTable: {
       height: 250,
@@ -120,6 +142,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor : "#C2C2C2",
       margin : '5px'
 
+    },
+    legendBox :{
+      position: 'absolute',
+      margin:'4px',
+      width: '15px',
+      height: '15px',
+      borderRadius: '3px'
     }
   }));
 
@@ -326,6 +355,18 @@ export default function TwitterPage(){
       return result;
 }
 
+function getMonthName(){
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+  ];
+
+  const d = new Date();
+
+  let month = monthNames[d.getMonth()];
+
+  return month;
+}
+
       function getUndefined (value){
         for (let i = 0; i < value.length; i++) {
             if(value[i].lokasi === "0"){
@@ -333,6 +374,7 @@ export default function TwitterPage(){
             }
         }
       }
+      
     
       const renderMap = () => {
     
@@ -343,11 +385,11 @@ export default function TwitterPage(){
     
             if (listValueOfMap[i].lokasi.match(d.properties.iso_3166_2)) {
              
-                if(listValueOfMap[i].total > 70){
+                if(listValueOfMap[i].total > 100){
                     return <path
                     key={d.properties.Name}
                     d={path(d)}
-                    fill="#075050"
+                    fill="#FF594C"
                     stroke="#0e1724"
                     strokeWidth="1"
                     strokeOpacity="0.5"
@@ -362,15 +404,15 @@ export default function TwitterPage(){
                     }}
                     onMouseOut={(e) => {
                       select(e.target)
-                        .attr('fill', '#075050')
+                        .attr('fill', '#FF594C')
                     }}
                   />;
                 }
-                if(listValueOfMap[i].total > 30 && listValueOfMap[i].total < 70){
+                if(listValueOfMap[i].total > 50 && listValueOfMap[i].total < 75){
                   return <path
                   key={d.properties.Name}
                   d={path(d)}
-                  fill="#107e78"
+                  fill="#FD7443"
                   stroke="#0e1724"
                   strokeWidth="1"
                   strokeOpacity="0.5"
@@ -387,15 +429,15 @@ export default function TwitterPage(){
                   }}
                   onMouseOut={(e) => {
                     select(e.target)
-                      .attr('fill', '#107e78')
+                      .attr('fill', '#FD7443')
                   }}
                 />;
               }
-              if(listValueOfMap[i].total > 0 && listValueOfMap[i].total < 30){
+              if(listValueOfMap[i].total > 25 && listValueOfMap[i].total < 49){
                 return <path
                 key={d.properties.Name}
                 d={path(d)}
-                fill="#1CB3AB"
+                fill="#FC903A"
                 stroke="#0e1724"
                 strokeWidth="1"
                 strokeOpacity="0.5"
@@ -412,46 +454,60 @@ export default function TwitterPage(){
                 }}
                 onMouseOut={(e) => {
                   select(e.target)
-                    .attr('fill', '#1CB3AB')
+                    .attr('fill', '#FC903A')
                 }}
               />;
               }
-              // if(listValueOfMap[i].total > 10 && listValueOfMap[i].total < 20){
-              //   return <path
-              //   key={d.properties.Name}
-              //   d={path(d)}
-              //   fill="#1CB3AB"
-              //   stroke="#0e1724"
-              //   strokeWidth="1"
-              //   strokeOpacity="0.5"
-              //   onMouseEnter={(e) => {
-              //     select(e.target)
-              //       .attr('fill', '#000')
-              //   }}
-              //   onMouseOut={(e) => {
-              //     select(e.target)
-              //       .attr('fill', '#1CB3AB')
-              //   }}
-              // />;
-              // }
-              // if(listValueOfMap[i].total > 0 && listValueOfMap[i].total < 10){
-              //   return <path
-              //   key={d.properties.Name}
-              //   d={path(d)}
-              //   fill="#C8EDEB"
-              //   stroke="#0e1724"
-              //   strokeWidth="1"
-              //   strokeOpacity="0.5"
-              //   onMouseEnter={(e) => {
-              //     select(e.target)
-              //       .attr('fill', '#000')
-              //   }}
-              //   onMouseOut={(e) => {
-              //     select(e.target)
-              //       .attr('fill', '#C8EDEB')
-              //   }}
-              // />;
-              // }
+              if(listValueOfMap[i].total > 10 && listValueOfMap[i].total < 24){
+                return <path
+                key={d.properties.Name}
+                d={path(d)}
+                fill="#FBAB31"
+                stroke="#0e1724"
+                strokeWidth="1"
+                strokeOpacity="0.5"
+                onMouseEnter={(e) => {
+                  select(e.target)
+                    .attr('fill', '#000')
+                }}
+                onClick={(e)=>{
+                  handleChangeDaerahmap(d.properties.iso_3166_2);
+                  setValueDropdownDaerah(d.properties.iso_3166_2)
+                  console.log(d.properties.iso_3166_2,"test")
+                  select(e.target)
+                    .attr('fill', '#FF0000')
+                }}
+                onMouseOut={(e) => {
+                  select(e.target)
+                    .attr('fill', '#FBAB31')
+                }}
+              />;
+              }
+              if(listValueOfMap[i].total > 0 && listValueOfMap[i].total < 9){
+                return <path
+                key={d.properties.Name}
+                d={path(d)}
+                fill="#FACA27"
+                stroke="#0e1724"
+                strokeWidth="1"
+                strokeOpacity="0.5"
+                onMouseEnter={(e) => {
+                  select(e.target)
+                    .attr('fill', '#000')
+                }}
+                onClick={(e)=>{
+                  handleChangeDaerahmap(d.properties.iso_3166_2);
+                  setValueDropdownDaerah(d.properties.iso_3166_2)
+                  console.log(d.properties.iso_3166_2,"test")
+                  select(e.target)
+                    .attr('fill', '#FF0000')
+                }}
+                onMouseOut={(e) => {
+                  select(e.target)
+                    .attr('fill', '#FACA27')
+                }}
+              />;
+              }
              }
             }
             return <path
@@ -697,9 +753,10 @@ export default function TwitterPage(){
       getDataSummary(e);
   
   }
+  
+  
     
       if(valueFropdownMedia === "news") history.push('/news')
-
 
     return(
       <React.Fragment>
@@ -828,41 +885,59 @@ export default function TwitterPage(){
 
         <Grid container justify="center" style={{ marginTop : 20, paddingLeft : 48, paddingRight : 48}}  spacing={3}>
           <Grid item xs={12} sm={6}>
-              <Card className={classes.rootCard}>
-                <span style={{ marginLeft : '10px', fontWeight : 'bold', fontSize : '16px', margin : 20}}>Tweet Activity</span>
+              <Card className={classes.rootCardMap}>
+                <span style={{ marginLeft : '30px', fontWeight : 'bold', fontSize : '20px',fontFamily:'Poppins', margin : 20, color:"#B1AFCD"}}>Map : Tweet Activity</span>
                 <div style={{height:'290px', paddingBottom : 5,  marginTop : '10px'}}>
-                  <svg width="100%" height="100%">
-                    <g className="geojson-layer">
+                  <svg width="100%" height="100%" style={{marginLeft:"130px", filter:"drop-shadow(0px 4px 16px rgba(252, 144, 58, 0.45))"}}>
+                    <g className="geojsonLayer">
                       {renderMap()}
                     </g>
                   </svg>
                 </div>
                 <Row>
-                  <Col xs={2} style={{ marginLeft : '15px'}}>
-                    <i className="fas fa-square" style={{color : '#075050', margin : '4px'}}/><span >Ramai : 	&gt; 100</span>    
-                  </Col>                 
-                  <Col xs={3}>
-                    <i className="fas fa-square" style={{color : '#107e78', margin : '4px'}}/><span>Cukup Ramai : &lt; 70</span>    
-                  </Col>
-                  <Col xs={2}>
-                    <i className="fas fa-square" style={{color : '#1CB3AB', margin : '4px'}}/><span>Sepi : &lt; 30</span>    
-                  </Col>
-                  <Col xs={3}>
-                    <i className="fas fa-square" style={{color : '#C2C2C2', margin : '4px'}}/><span>Undefined : {valueUndefined}</span>                     
+                  <Col xs={2} style={{ marginLeft : '15px', width:"25%", marginTop:"-180px"}}>
+                    <i className={classes.legendBox} style={{background: '#FF594C',boxShadow: '0px 0px 8px rgba(64, 254, 66, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Ramai : 	&gt; 100</span>
+                    <br /> 
+                    <i className={classes.legendBox} style={{background: '#FD7443',boxShadow: '0px 0px 8px rgba(110, 253, 67, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Cukup Ramai : &lt; 75</span>
+                    <br />    
+                    <i className={classes.legendBox} style={{background: '#FC903A',boxShadow: '0px 0px 8px rgba(154, 253, 68, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Cukup : &lt; 50</span>
+                    <br />    
+                    <i className={classes.legendBox} style={{background: '#FBAB31',boxShadow: '0px 0px 8px rgba(195, 253, 70, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>sepi : &lt; 25</span>
+                    <br />    
+                    <i className={classes.legendBox} style={{background: '#FACA27',boxShadow: '0px 0px 8px rgba(241, 252, 71, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>sangat sepi : &lt; 10</span>  
+                    <br />   
+                    <i className={classes.legendBox} style={{background: '#D3D2DC',boxShadow: '0px 0px 8px rgba(211, 210, 220, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Undefined : {valueUndefined}</span>                               
                   </Col>
                 </Row>
               </Card>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Card className={classes.rootCard}>
-              {/* <h4  style={{ marginLeft : '40px', marginTop : '20px', fontWeight : 'bold'}}>Sentimen</h4> */}
               {renderPieSentimen()}
+              <Row>
+                  <Col xs={2} style={{ marginLeft : '15px', width:"25%", marginTop:"-200px"}}>
+                    <i className={classes.legendBox} style={{background: '#AAFD45',boxShadow: '0px 0px 8px rgba(64, 254, 66, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Positive</span>
+                    <br /> <br />
+                    <i className={classes.legendBox} style={{background: '#EB3758',boxShadow: '0px 0px 8px rgba(110, 253, 67, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Negative</span>
+                    <br /> <br />
+                    <i className={classes.legendBox} style={{background: '#B2BBC1',boxShadow: '0px 0px 8px rgba(154, 253, 68, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Neutral</span>                               
+                  </Col>
+                </Row>
             </Card>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Card className={classes.rootCard}>
               {/* <h4   style={{ marginLeft : '40px', marginTop : '20px', fontWeight : 'bold'}}>Gender</h4> */}
               {renderGenderSentimen()}
+              <Row> 
+                  <Col xs={2} style={{ marginLeft : '15px', width:"25%", marginTop:"-200px"}}>
+                    <i className={classes.legendBox} style={{background: '#3190FF',boxShadow: '0px 0px 8px rgba(64, 254, 66, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#3190FF"}}>Laki-laki</span>
+                    <br /> <br />
+                    <i className={classes.legendBox} style={{background: '#EB47B3',boxShadow: '0px 0px 8px rgba(110, 253, 67, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#EB47B3"}}>Perempuan</span>
+                    <br /> <br />
+                    <i className={classes.legendBox} style={{background: '#B1AFCD',boxShadow: '0px 0px 8px rgba(154, 253, 68, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Undefined</span>                               
+                  </Col>
+                </Row>
             </Card>
           </Grid>
         </Grid>
@@ -874,7 +949,7 @@ export default function TwitterPage(){
           
               <Grid container justify="center" spacing={3} style={{ marginTop : 50,   paddingLeft : 48, paddingRight : 48}}>
                 <Grid item sm={4}>
-                  <Card className={classes.rootCard}>
+                  <Card className={classes.rootCard} style={{height :  405}}>
                   {
                         <LineTwitter
                           date={tanggal}
@@ -883,15 +958,19 @@ export default function TwitterPage(){
                           netral={netralArr}
                       />
                       }
+                  <Col xs={2} style={{ marginLeft : '45%', marginTop:"-20px"}}>
+                    <span style={{color:"white", fontSize:"20px"}}>{getMonthName()}</span>    
+                  </Col>                 
+
                   </Card>
                 </Grid>
                 <Grid item sm={5}>
-                  <Card className={classes.rootCard} style={{ height :  365}}>
+                  <Card className={classes.rootCard} style={{ height :  405}}>
                     {renderWord()}
                   </Card>
                 </Grid>
                 <Grid item sm={3}>
-                  <Card className={classes.rootCard} style={{ height :  365}}>
+                  <Card className={classes.rootCard} style={{ height :  405}}>
                     {
                       <BarSummary
                         negatif={negatifSummary}
@@ -899,6 +978,17 @@ export default function TwitterPage(){
                         netral={netralSummary}
                       />
                     }
+                    <Row>
+                  <Col xs={3} style={{ marginLeft : '80px'}}>
+                  <i className={classes.legendBox} style={{background: '#AAFD45',boxShadow: '0px 0px 8px rgba(64, 254, 66, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Positive</span>   
+                  </Col>                 
+                  <Col xs={3}>
+                  <i className={classes.legendBox} style={{background: '#EB3758',boxShadow: '0px 0px 8px rgba(110, 253, 67, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Negative</span>
+                  </Col>
+                  <Col xs={3}>
+                  <i className={classes.legendBox} style={{background: '#B2BBC1',boxShadow: '0px 0px 8px rgba(154, 253, 68, 0.8)'}}/><span style={{marginLeft:"25px",fontSize:"17px",color:"#B1AFCD"}}>Neutral</span>                                
+                  </Col>
+                </Row>
                   </Card>
                 </Grid>
               </Grid>
@@ -919,7 +1009,7 @@ export default function TwitterPage(){
                   </Card>
                 </Grid>
                 <Grid item sm={7}>
-                  <Card className={classes.rootCard} style={{ height :  365}}>
+                  <Card className={classes.rootCard} style={{ height :  405}}>
                     {renderWord()}
                   </Card>
                 </Grid>
@@ -933,7 +1023,7 @@ export default function TwitterPage(){
          <Grid container justify="center" spacing={5} style={{ marginTop : 50,   paddingLeft : 48, paddingRight : 48}}>
           <Grid item md={4} style={{justifyContent : 'space-between', alignContent : 'space-around'}} >
             <Card className={classes.rootPositif}>
-              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 16, fontWeight : 'bold'}}> Sentimen Positif</p>
+              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 20,fontFamily:'Poppins', fontWeight : 'bold', color:'#AAFD45'}}> Sentimen Positif</p>
                 <Paper className={classes.paperTable}>
                   <TableContainer component={Paper}>
                     <Table sx={{ width: '100%' }} aria-label="customized table">
@@ -947,7 +1037,7 @@ export default function TwitterPage(){
       
           <Grid item md={4} style={{justifyContent : 'space-between', alignContent : 'space-around'}}>
             <Card className={classes.rootNetral}>
-              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 16, fontWeight : 'bold'}}> Sentimen Netral</p>
+              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 20,fontFamily:'Poppins', fontWeight : 'bold', color:'#B2BBC1'}}> Sentimen Netral</p>
                 <Paper className={classes.paperTable}>
                   <TableContainer component={Paper}>
                     <Table sx={{  width: '100%' }} aria-label="customized table">
@@ -961,7 +1051,7 @@ export default function TwitterPage(){
 
           <Grid item md={4} style={{justifyContent : 'space-between', alignContent : 'space-around'}} >
             <Card className={classes.rootNegatif}>
-              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 16, fontWeight : 'bold'}}> Sentimen Negatif</p>
+              <p style={{ marginLeft : 15, marginTop : 10, fontSize : 20,fontFamily:'Poppins', fontWeight : 'bold', color:'#EB3758'}}> Sentimen Negatif</p>
                 <Paper className={classes.paperTable}>
                   <TableContainer component={Paper}>
                     <Table sx={{  width: '100%' }} aria-label="customized table">

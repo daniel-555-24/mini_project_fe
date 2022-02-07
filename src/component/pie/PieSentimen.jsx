@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper } from '@material-ui/core';
 import Chart from 'react-apexcharts';
+import { fontFamily } from '@mui/system';
 
 
 
@@ -10,7 +11,7 @@ export default function PieSentimen(props) {
     const [options, setOptions] = React.useState({
         chart: {
           width: 380,
-          type: 'pie',
+          type: 'donut',
           stacked: true,
           zoom: {
             enabled: false
@@ -22,7 +23,9 @@ export default function PieSentimen(props) {
         dataLabels: {
           // enabled: true,
           style: {
-              colors: ['black']
+              colors: ['black','black','white'],
+              fontSize : '17px',
+              fontFamily:'Poppins'
           },
           // offsetX: 30
         },
@@ -31,12 +34,14 @@ export default function PieSentimen(props) {
           margin : 20,
           align: 'left',
           style: {
-            fontSize:  '16px',
+            fontSize:  '20px',
             fontWeight:  'bold',
+            color:'#B1AFCD',
+            fontFamily:'Poppins'
           },
         },
         legend: {
-          show: true,
+          show: false,
           markers: {
             fillColors: ['#D2DC2E', '#E0E0E0','#BE0712' ]
           }, 
@@ -53,9 +58,10 @@ export default function PieSentimen(props) {
         //   colors: ['#666']
         // },
         fill: {
-          colors: ['#D2DC2E', '#E0E0E0','#BE0712' ]
+          colors: ['#AAFD45', '#B2BBC1','#EB3758' ]
         },
-        labels: ['Positif', 'Netral', 'Negatif'],
+        labels: ['Positif', 'Netral', 'Negatif']
+        
       });
 
     return(
@@ -66,9 +72,9 @@ export default function PieSentimen(props) {
             options={options} 
             series={[props.positif, props.netral, props.negatif]} 
             // series={[25, 50, 25]} 
-            type="pie" 
-            width={500} 
-            height={375}
+            type="donut" 
+            width={600} 
+            height={345}
             />
       </>
     )

@@ -34,13 +34,15 @@ export default function TablePositif(props) {
   const classes = useStyles();
   const history = useHistory();
 
+
+  
   return (
       <>
        <TableBody>
         {/* {rows.map((row) => ( */}
             <TableRow onClick={()=> history.push('/user/?' + props.username)}
               key={props.key}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ '&:last-child td, &:last-child th': { border: 0} }}
               hover
             >
               <TableCell component="th" scope="row">

@@ -1,3 +1,4 @@
+import { color } from "@mui/system";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
@@ -35,9 +36,10 @@ class BarSummary extends React.Component {
           plotOptions: {
             bar: {
               horizontal: true,
+              borderRadius: 20
             },
           },
-          colors: ['#D2DC2E', '#E0E0E0','#BE0712'],
+          colors: ['#AAFD45', '#B2BBC1','#EB3758'],
           dataLabels: {
             enabled: false
           },
@@ -47,6 +49,15 @@ class BarSummary extends React.Component {
           },
           xaxis: {
             categories:['Data Covid', 'PPKM', 'Protokol Kesehatan', 'Test Covid', 'Vaksin'],
+            labels:{
+              style:{
+                fontSize:'18px',
+                fontFamily:'Poppins',
+                colors:['white'],
+              },
+              offsetX: 0,
+              offsetY: 8,
+            },
             tooltip: {
                 enabled: false
               },
@@ -56,18 +67,29 @@ class BarSummary extends React.Component {
             align: 'left',
             margin : 20,
             style: {
-              fontSize:  '16px',
+              fontSize:  '20px',
               fontWeight:  'bold',
+              fontFamily: 'Poppins',
+              color:'#B1AFCD',
             },
           },
           yaxis: {
-            // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-            title: {
-              text: undefined
+            labels:{
+              style:{
+                fontSize:'18px',
+                fontFamily:'Poppins',
+                colors:['white'],
+              },
+              offsetX: -10,
+              offsetY: 0,
             },
+            // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            // title: {
+            //   text: undefined
+            // },
           },
           legend: {
-            show: true,
+            show: false,
             markers: {
               fillColors: ['#D2DC2E', '#E0E0E0','#BE0712' ]
             }, 

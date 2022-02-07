@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-  export default function Navbar(){
+  export default function Navbar(props){
     const classes = useStyles();
     const [valueFropdownTopik, setValueDropdownTopik] = React.useState("");
     const [anchorEl, setAnchorEl] = React.useState(null);
