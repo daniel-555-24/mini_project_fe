@@ -5,7 +5,34 @@ class BarWordCloud extends React.Component {
     constructor(props) {
         super(props);
     
-        this.state = {}
+        this.state = {
+          
+          series: [{
+            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+          }],
+          options: {
+            chart: {
+              type: 'bar',
+              height: 350
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                horizontal: true,
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            xaxis: {
+              categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+                'United States', 'China', 'Germany'
+              ],
+            }
+          },
+        
+        
+        };
       }
       render() {
         return (
@@ -25,33 +52,41 @@ class BarWordCloud extends React.Component {
                     },
                     plotOptions: {
                       bar: {
-                        barHeight: '100%',
-                        distributed: true,
+                        // barHeight: '100%',
+                        borderRadius: 20,
+                        distributed: false,
                         horizontal: true,
                         dataLabels: {
                           position: 'bottom'
                         },
                       }
                     },
-                    colors: ['#075050'],
+                    dataLabels: {
+                      enabled: true
+                    },
+      
+                    colors: ['#8DFD44'],
                     // colors: ['#075050', '#107E78', '#148E87', '#1CB3AB', '#C8EDEB'],
                     dataLabels: {
                       enabled: true,
-                      textAnchor: 'start',
-                      style: {
-                        colors: ['#fff']
-                      },
+                      enabledOnSeries: undefined,
                       formatter: function (val, opt) {
                         return opt.w.globals.labels[opt.dataPointIndex] 
-                        // + ":  " + val
                       },
+                      textAnchor: 'start',
+                      distributed: false,
                       offsetX: 0,
-                      dropShadow: {
-                        enabled: true
-                      }
+                      offsetY: 0,
+                      style: {
+                          fontSize: '20px',
+                          fontFamily: 'Poppins',
+                          fontWeight: 'bold',
+                          colors: ['black'],
+                      },
+                    
                     },
                     stroke: {
-                      width: 1,
+                      width: 2,
                       colors: ['#fff']
                     },
                     xaxis: {

@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BarWordCloud from '../bar/BarWordCloudTwitter';
 
 
-const fill =  ['#075050', '#107E78', '#148E87', '#1CB3AB'];
+const fill =  ['#8DFD44', '#107E78', '#148E87', '#1CB3AB'];
   
 const schemeCategory10ScaleOrdinal = scaleOrdinal(fill);
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ export default function WordCloudTwitter(props) {
             <Grid container justifyContent="left">
                     <Grid item sm={7} style={{ marginTop : 10}}>
                         <Grid style={{ fontWeight : 'bold', marginLeft : 20, marginTop : 5, fontSize : 16}}>
-                            <span> Word Cloud </span>
+                            <span style={{fontSize:"20px",fontFamily:"Poppins",color:"#B1AFCD"}}> Word Cloud </span>
                             <br/>
                             <br/>
                             <Form.Select className={classes.seleColor} size="md" onChange={e => props.onChange(e.target.value)}>
@@ -56,14 +56,14 @@ export default function WordCloudTwitter(props) {
                             <option value="20">Key Word : 20</option>
                         </Form.Select>
                         </Grid>
-                        <Grid style={{ marginTop : 40}}>
+                        <Grid style={{ marginTop : 40, filter:"drop-shadow(0px 4px 16px rgba(252, 144, 58, 0.45))"}}>
                             <WordCloud 
                                 data={props.data}
                                 width={200}
                                 height={80}  
                                 font="Poppins"
                                 fontWeight="bold"
-                                fontSize={(word) => Math.log2(word.value) * 10}
+                                fontSize={(word) => Math.log2(word.value) * 1}
                                 spiral="archimedean"
                                 rotate={0}
                                 padding={2}

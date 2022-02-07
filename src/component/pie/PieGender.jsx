@@ -10,7 +10,7 @@ export default function PieGender(props) {
     const [options, setOptions] = React.useState({
         chart: {
             width: 380,
-            type: 'pie',
+            type: 'donut',
             stacked: true,
             zoom: {
               enabled: false
@@ -22,14 +22,16 @@ export default function PieGender(props) {
           dataLabels: {
             // enabled: true,
             style: {
-                colors: ['#333']
-            },
+              colors: ['black','black','black'],
+              fontSize : '17px',
+              fontFamily:'Poppins'
+          },
             // offsetX: 30
           },
           legend: {
-            show: true,
+            show: false,
             markers: {
-              fillColors: ['#005A8D', '#FF96AD','#E0E0E0' ]
+              fillColors: ['#3190FF', '#EB47B3','#B1AFCD' ]
             },
             position: 'bottom',
           },
@@ -38,8 +40,10 @@ export default function PieGender(props) {
             margin : 20,
             align: 'left',
             style: {
-              fontSize:  '16px',
+              fontSize:  '20px',
               fontWeight:  'bold',
+              color:'#B1AFCD',
+              fontFamily:'Poppins'
             },
           },
           tooltip: {
@@ -54,7 +58,7 @@ export default function PieGender(props) {
           //   colors: ['#666']
           // },
           fill: {
-            colors: ['#005A8D', '#FF96AD','#E0E0E0' ]
+            colors: ['#3190FF', '#EB47B3','#B1AFCD' ]
           },
           labels: ['Laki', 'Perempuan', 'Undefined'],
           // responsive: [{
@@ -77,9 +81,9 @@ export default function PieGender(props) {
             options={options} 
             series={[props.laki, props.perempuan, props.unknown]} 
             // series={[25, 50, 25]} 
-            type="pie" 
-            width={500} 
-            height={375} 
+            type="donut" 
+            width={600} 
+            height={345} 
             />
     )
 }
