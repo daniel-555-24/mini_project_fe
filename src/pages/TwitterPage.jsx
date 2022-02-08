@@ -182,6 +182,7 @@ export default function TwitterPage(){
     const [lastDate, setLastDate] = React.useState("");
     const [valueWord,setValueWord] = React.useState(10);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [region, setRegion] = React.useState("");
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -518,6 +519,8 @@ function getMonthName(){
             strokeWidth="1"
             strokeOpacity="0.5"
             onClick={(e)=>{
+              e.preventDefault()
+              setRegion(d.properties.iso_3166_2)
               handleChangeDaerahmap(d.properties.iso_3166_2);
               select(e.target)
                     .attr('fill', '#FF0000')
@@ -746,6 +749,7 @@ function getMonthName(){
     }
 
     const handleChangeDaerahmap = (e) => {
+      setRegion(e)
       setValueDropdownDaerah(e);
       getSourceOfIndex(valueIssue, e);
       getTableDesc(valueIssue, e);
@@ -831,7 +835,7 @@ function getMonthName(){
               </Form.Select>
             </Grid>
             <Grid item sm={2}>
-              <Form.Select className={classes.seleColor} size="md" onChange={handleChangeDaerah}>
+              <Form.Select className={classes.seleColor} size="md" onChange={handleChangeDaerah} value={region} >
                   <option value="">Indonesia</option>
                   <option value="ID-AC">Aceh</option>
                   <option value="ID-SU">Sumatera Utara</option>
